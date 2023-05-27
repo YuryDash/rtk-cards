@@ -2,11 +2,16 @@ import React from "react";
 import logo from "./logo.svg";
 import { Counter } from "./features/counter/Counter";
 import "./App.css";
+import { Header } from "components/header/header";
 
 function App() {
-  let a = 0;
+  const onClickButtonHandle = () => {
+    alert("Allah Akbar! Boom :D");
+  };
+
   return (
     <div className="App">
+      <Header btnText="Sign in" callback={onClickButtonHandle} />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Counter />
