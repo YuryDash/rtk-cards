@@ -19,9 +19,9 @@ function App() {
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
         <span>
-          <span>Learn </span>
+          <span>Learn</span>
           <a
-            //'Akbar'
+            //'Git'
             className="App-link"
             href="https://reactjs.org/"
             target="_blank"
