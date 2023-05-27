@@ -16,7 +16,7 @@ function App() {
         <span>
           <span>Learn</span>
           <a
-            //'Akbar begin'
+            //'Git'
             className="App-link"
             href="https://reactjs.org/"
             target="_blank"
