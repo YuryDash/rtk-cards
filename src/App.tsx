@@ -4,6 +4,7 @@ import { Counter } from "./features/counter/Counter";
 import "./App.css";
 
 function App() {
+  let a = 0;
   return (
     <div className="App">
       <header className="App-header">
