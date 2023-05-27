@@ -5,18 +5,14 @@ import { store } from "./app/store";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
-import { createBrowserRouter, RouterProvider, BrowserRouter } from "react-router-dom";
-
+import { RouterProvider } from "react-router-dom";
+import { router } from "router/router";
 const container = document.getElementById("root")!;
 const root = createRoot(container);
 
-const router = createBrowserRouter([{ path: "" }]);
-
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 // this is test and customization teamwork
