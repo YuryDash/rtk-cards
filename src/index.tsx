@@ -1,3 +1,5 @@
+import { App } from "App";
+import { Header } from "components/header/Header";
 import { router } from "path/router/router";
 import React from "react";
 import { createRoot } from "react-dom/client";
@@ -6,17 +8,13 @@ import { RouterProvider } from "react-router-dom";
 import { store } from "./app/store";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import { Header } from "components/header/header";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
-//yo
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <Header btnText="Sign in" />
-      <RouterProvider router={router} />
-    </Provider>
+    <RouterProvider router={router} />
+    <Provider store={store}>{/* <Header btnText="Index.tsx" /> */}</Provider>
   </React.StrictMode>
 );
 // this is test and customization teamwork

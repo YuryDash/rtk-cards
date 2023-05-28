@@ -14,8 +14,7 @@ export const Header: React.FC<ButtonPropsType> = ({ btnText }) => {
           <img src={logo} alt="just logo" />
         </div>
         <div className={s.header__btn}>
-          {/* <button onClick={callback}>{btnText}</button> */}
-          <Auth headers="Sign in" />
+          <Auth headers={btnText} />
         </div>
       </div>
     </div>

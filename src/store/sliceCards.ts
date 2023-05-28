@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const sliceCards = createSlice({
-  name: "name",
+  name: "app",
   initialState: {
     state: [],
   },

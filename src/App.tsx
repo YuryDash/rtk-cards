@@ -1,9 +1,17 @@
-import { Header } from "components/header/header";
+import { Header } from "components/header/Header";
 import "./App.css";
 
-function App() {
-  const onClickButtonHandle = () => {};
-
-  return <div className="App"></div>;
-}
-export default App;
+export const App = () => {
+  return (
+    <div className="App">
+      <Header btnText={"Sign in"} />;<h1>this is MAIN</h1>
+      <h1>this is MAIN</h1>
+      <h1>this is MAIN</h1>
+      <h1>this is MAIN</h1>
+      <h1>this is MAIN</h1>
+      <h1>this is MAIN</h1>
+      <h1>this is MAIN</h1>
+      <h1>this is MAIN</h1>
+    </div>
+  );
+};
