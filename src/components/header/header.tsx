@@ -1,3 +1,4 @@
+import { Auth } from "components/auth/Auth";
 import logo from "../../images/incubator.png";
 import s from "./header.module.scss";
 
@@ -14,7 +15,8 @@ export const Header: React.FC<ButtonPropsType> = ({ callback, btnText }) => {
           <img src={logo} alt="just logo" />
         </div>
         <div className={s.header__btn}>
-          <button onClick={callback}>{btnText}</button>
+          {/* <button onClick={callback}>{btnText}</button> */}
+          <Auth headers="Sign in" />
         </div>
       </div>
     </div>
