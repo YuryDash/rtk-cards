@@ -1,0 +1,26 @@
+.button {
+  cursor: pointer;
+  height: 36px;
+  border-radius: 50px;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #366eff;
+  border: none;
+  letter-spacing: 0.8px;
+  box-shadow: 1px 2px 2px -1px #6c96ff;
+  transition-duration: 300ms;
+  text-transform: "none";
+  &:hover {
+    background-color: #5f8cff;
+    transition-duration: 300ms;
+  }
+  &:active {
+    background-color: #ffffff;
+    color: #366eff;
+    box-shadow: none;
+    transition-duration: 300ms;
+    border: 1px solid #366eff;
+  }
+}
