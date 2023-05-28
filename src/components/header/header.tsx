@@ -3,11 +3,10 @@ import logo from "../../images/incubator.png";
 import s from "./header.module.scss";
 
 type ButtonPropsType = {
-  callback: () => void;
   btnText: string;
 };
 
-export const Header: React.FC<ButtonPropsType> = ({ callback, btnText }) => {
+export const Header: React.FC<ButtonPropsType> = ({ btnText }) => {
   return (
     <div className={s.container}>
       <div className={s.header}>

@@ -16,6 +16,8 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { InputLabel } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
+import { Link } from "react-router-dom";
+import { PATH } from "features/counter/common/constants/path";
 
 type AuthPropsType = {
   headers: string;
@@ -42,14 +44,20 @@ export const Auth: React.FC<AuthPropsType> = ({ headers }) => {
   };
 
   return (
-    <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+    <div style={{ fontFamily: "Montserrat" }}>
+      <Button variant="outlined" onClick={handleClickOpen} style={{ textTransform: "none" }}>
         {headers}
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        hideBackdrop
+        PaperProps={{ style: { boxShadow: "0px 2px 10px 1px rgba(0, 0, 0, 0.35)" } }}
+      >
+        {/* title */}
         <DialogTitle style={{ textAlign: "center", padding: "35px 0", fontSize: "30px" }}>{headers}</DialogTitle>
+        {/* title */}
         <DialogContent>
-          {/* <DialogContentText style={{ alignItems: "center" }}></DialogContentText> */}
           <TextField autoFocus margin="dense" id="nameEmail" label="Email" type="email" fullWidth variant="standard" />
           {/* //for show-hide password */}
           <FormControl variant="standard" fullWidth style={{ margin: "25px 0" }}>
@@ -76,22 +84,35 @@ export const Auth: React.FC<AuthPropsType> = ({ headers }) => {
             <FormControlLabel required control={<Checkbox />} label="Remember me" />
           </FormGroup>
           <div style={{ textAlign: "right" }}>
-            <a style={{ color: "black", textDecoration: "none" }} href="#">
+            <Link style={{ color: "black", textDecoration: "none" }} to={PATH.PASSWORD_RECOVERY}>
               Forgot Password?
-            </a>
+            </Link>
           </div>
         </DialogContent>
         <DialogActions>
-          <Button className={s.button} onClick={handleClose} fullWidth variant="contained">
-            {headers}
-          </Button>
+          <div style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <Button
+              className={s.button}
+              onClick={handleClose}
+              variant="contained"
+              style={{
+                textTransform: "none",
+                width: "80%",
+              }}
+            >
+              {headers}
+            </Button>
+          </div>
         </DialogActions>
-        <a href="#">Already have an account?</a>
+        <p style={{ textAlign: "center", padding: "10px", color: "rgba(0, 0, 0, 0.55)" }}>don't you have an account?</p>
 
-        <div style={{ textAlign: "center", padding: "20px" }}>
-          <a style={{ color: "#366eff", fontSize: "16px", fontFamily: "Montserrat" }} href="#">
+        <div style={{ textAlign: "center", margin: "11px 0 42px 0" }}>
+          <Link
+            to={PATH.REGISTRATION}
+            style={{ color: "#366eff", fontSize: "20px", fontFamily: "Montserrat", fontWeight: "600" }}
+          >
             Sign Up
-          </a>
+          </Link>
         </div>
       </Dialog>
     </div>

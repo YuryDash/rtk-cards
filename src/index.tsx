@@ -6,6 +6,7 @@ import { RouterProvider } from "react-router-dom";
 import { store } from "./app/store";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+import { Header } from "components/header/header";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
@@ -13,6 +14,7 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      <Header btnText="Sign in" />
       <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>
