@@ -7,18 +7,16 @@ import { store } from "./app/store";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import App from "App";
-import { Header } from "components/header/header";
+import { Header } from "components/header/Header";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
 //yo
-const onClickButtonHandle = () => {
-  alert("Allah Akbar! Boom :D");
-};
+const onClickButtonHandle = () => {};
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Header btnText="Sign in" callback={onClickButtonHandle} />
+      <Header btnText="Sign in" />
       <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>

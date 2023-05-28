@@ -1,12 +1,5 @@
-import { Header } from "components/header/header";
+import { Header } from "components/header/Header";
 
 export const Auth = () => {
-  const onClickButtonHandle = () => {
-    alert("Allah Akbar! Boom :D");
-  };
-  return (
-    <div>
-      Hello
-    </div>
-  );
+  return <div>Hello</div>;
 };

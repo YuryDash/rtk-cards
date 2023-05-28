@@ -1,8 +1,6 @@
-import React from "react";
 import logo from "./logo.svg";
 import { Counter } from "./features/counter/Counter";
 import "./App.css";
-import { Header } from "components/header/header";
 
 function App() {
   const onClickButtonHandle = () => {
@@ -11,7 +9,6 @@ function App() {
 
   return (
     <div className="App">
-      <Header btnText="Sign in" callback={onClickButtonHandle} />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Counter />
