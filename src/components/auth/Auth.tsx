@@ -6,7 +6,7 @@ export const Auth = () => {
   };
   return (
     <div>
-      <Header btnText="Sign in" callback={onClickButtonHandle} />
+      Hello
     </div>
   );
 };
