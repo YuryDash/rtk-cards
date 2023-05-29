@@ -83,7 +83,7 @@ export const Auth: React.FC<AuthPropsType> = ({ headers }) => {
             <FormControlLabel required control={<Checkbox />} label="Remember me" />
           </FormGroup>
           <div style={{ textAlign: "right" }}>
-            <Link style={{ color: "black", textDecoration: "none" }} to={PATH.PASSWORD_RECOVERY}>
+            <Link style={{ color: "black", textDecoration: "none" }} to={PATH.PASSWORD_RECOVERY} onClick={handleClose}>
               Forgot Password?
             </Link>
           </div>
@@ -107,6 +107,7 @@ export const Auth: React.FC<AuthPropsType> = ({ headers }) => {
 
         <div style={{ textAlign: "center", margin: "11px 0 42px 0" }}>
           <Link
+            onClick={handleClose}
             to={PATH.REGISTRATION}
             style={{ color: "#366eff", fontSize: "20px", fontFamily: "Montserrat", fontWeight: "600" }}
           >
