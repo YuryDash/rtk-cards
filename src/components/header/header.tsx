@@ -1,7 +1,6 @@
 import { Auth } from "components/auth/Auth";
 import logo from "../../images/incubator.png";
-import s from "./Header.module.scss";
-import { ButtonComponent } from "components/button/ButtonComponent";
+import s from "./header.module.scss";
 
 type ButtonPropsType = {
   btnText: string;

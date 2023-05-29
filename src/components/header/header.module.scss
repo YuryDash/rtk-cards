@@ -1,22 +1,41 @@
 .header {
+  background-color: white;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-
+  align-items: center;
+  padding: 0 13%;
   height: 60px;
-  padding: 0 136px;
+  box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.35);
 
-  background: #fcfcfc;
-  box-shadow: 0 2px 10px rgba(109, 109, 109, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
+  &logo img {
+    width: 210px;
+    height: 48px;
+  }
 
-.header img {
-  cursor: pointer;
-}
-.botton {
-  height: 36px;
-  width: 113px;
-  left: 1031px;
-  top: 12px;
-  border-radius: 30px;
+  &btn button {
+    cursor: pointer;
+    width: 113px;
+    height: 36px;
+    border-radius: 50px;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: #366eff;
+    border: none;
+    letter-spacing: 0.8px;
+    box-shadow: 1px 2px 2px -1px #6c96ff;
+    transition-duration: 300ms;
+    &:hover {
+      background-color: #5f8cff;
+      transition-duration: 300ms;
+    }
+    &:active {
+      background-color: #ffffff;
+      color: #366eff;
+      box-shadow: none;
+      transition-duration: 300ms;
+      border: 1px solid #366eff;
+    }
+  }
 }

@@ -5,7 +5,7 @@ import { PATH } from "common/constants/path";
 import { Registration } from "features/registration/Registration";
 import { PathRecovery } from "features/path-recovery/PathRecovery";
 import { Error404 } from "features/error404/Error404";
-import { Header } from "components/header/header";
+import { Header } from "components/header/Header";
 
 export const App = () => {
   return (
