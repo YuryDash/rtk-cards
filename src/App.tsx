@@ -1,46 +1,22 @@
-import logo from "./logo.svg";
-import { Counter } from "./features/counter/Counter";
+import { Header } from "components/header/Header";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import { MainDisplay } from "features/main-display/MainDisplay";
+import { PATH } from "common/constants/path";
+import { Registration } from "features/registration/Registration";
+import { PathRecovery } from "features/path-recovery/PathRecovery";
+import { Error404 } from "features/error404/Error404";
 
-function App() {
-  const onClickButtonHandle = () => {
-    alert("Allah Akbar! Boom :D");
-  };
-
+export const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn</span>
-          <a
-            //'Git'
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a className="App-link" href="https://redux.js.org/" target="_blank" rel="noopener noreferrer">
-            Redux
-          </a>
-          <span>, </span>
-          <a className="App-link" href="https://redux-toolkit.js.org/" target="_blank" rel="noopener noreferrer">
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a className="App-link" href="https://react-redux.js.org/" target="_blank" rel="noopener noreferrer">
-            React Redux
-          </a>
-        </span>
-      </header>
+      <Header btnText="Sign in" />
+      <Routes>
+        <Route path={PATH.MAIN} element={<MainDisplay />} />
+        <Route path={PATH.REGISTRATION} element={<Registration />} />
+        <Route path={PATH.PASSWORD_RECOVERY} element={<PathRecovery />} />
+        <Route path={PATH.ERROR404} element={<Error404 />} />
+      </Routes>
     </div>
   );
-}
-export default App;
+};
