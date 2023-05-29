@@ -7,12 +7,12 @@
   height: 60px;
   box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.35);
 
-  &logo img {
+  &__logo img {
     width: 210px;
     height: 48px;
   }
 
-  &btn button {
+  &__btn button {
     cursor: pointer;
     width: 113px;
     height: 36px;
@@ -39,3 +39,4 @@
     }
   }
 }
+//210 na 48 img
