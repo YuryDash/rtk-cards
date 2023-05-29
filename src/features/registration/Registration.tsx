@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { PATH } from "../common/constants/path";
+import { PATH } from "../counter/common/constants/path";
 
 type RegistrationPropsType = {};
 export const Registration: React.FC<RegistrationPropsType> = ({}) => {

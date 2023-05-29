@@ -1,27 +1,26 @@
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { InputLabel } from "@mui/material";
 import Button from "@mui/material/Button";
+import Checkbox from "@mui/material/Checkbox";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import TextField from "@mui/material/TextField";
-import * as React from "react";
-import FormGroup from "@mui/material/FormGroup";
+import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import s from "./auth.module.scss";
+import FormGroup from "@mui/material/FormGroup";
+import IconButton from "@mui/material/IconButton";
 import Input from "@mui/material/Input";
 import InputAdornment from "@mui/material/InputAdornment";
-import IconButton from "@mui/material/IconButton";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { InputLabel } from "@mui/material";
-import FormControl from "@mui/material/FormControl";
-import { Link } from "react-router-dom";
+import TextField from "@mui/material/TextField";
 import { PATH } from "features/counter/common/constants/path";
+import * as React from "react";
+import { Link } from "react-router-dom";
+import s from "./auth.module.scss";
 
 type AuthPropsType = {
   headers: string;
-  //dororo
 };
 
 export const Auth: React.FC<AuthPropsType> = ({ headers }) => {

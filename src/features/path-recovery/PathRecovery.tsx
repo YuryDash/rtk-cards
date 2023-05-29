@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { PATH } from "../common/constants/path";
+import { PATH } from "../counter/common/constants/path";
 
 export const PathRecovery = () => {
   return (
@@ -11,5 +11,3 @@ export const PathRecovery = () => {
     </div>
   );
 };
-
-export default PathRecovery;
