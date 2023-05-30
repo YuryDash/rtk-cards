@@ -1,0 +1,71 @@
+// .button {
+//   cursor: pointer;
+//   height: 36px;
+//   border-radius: 50px;
+//   font-family: Montserrat;
+//   font-size: 16px;
+//   font-weight: 500;
+//   color: #ffffff;
+//   background-color: #366eff;
+//   border: none;
+//   letter-spacing: 0.8px;
+//   box-shadow: 1px 2px 2px -1px #6c96ff;
+//   transition-duration: 300ms;
+//   text-transform: "none";
+//   &:hover {
+//     background-color: #5f8cff;
+//     transition-duration: 300ms;
+//   }
+//   &:active {
+//     background-color: #ffffff;
+//     color: #366eff;
+//     box-shadow: none;
+//     transition-duration: 300ms;
+//     border: 1px solid #366eff;
+//   }
+// }
+.paper {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 413px;
+    height: 552px;
+    margin: 0 auto;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 10px;
+  }
+  &__title {
+    margin-top: 35px;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 32px;
+  }
+  &__checkbox {
+    align-self: flex-start;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+  }
+  &__navlink {
+    align-self: flex-end;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+    text-decoration: none;
+    color: black;
+  }
+  &__button {
+    margin-top: 69px;
+  }
+  &__registration {
+    margin-bottom: 40px;
+    font-weight: 600px;
+    color: #366eff;
+  }
+}
