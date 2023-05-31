@@ -1,0 +1,27 @@
+.paper {
+  &__title {
+    margin: 35px 0 50px 0;
+    font-size: 26px;
+    font-weight: 600;
+  }
+
+  &__describe {
+    margin: 30px 0 11px;
+    font-weight: 600;
+    opacity: 0.5;
+    font-size: 14px;
+  }
+  &__registration {
+    margin-bottom: 40px;
+    font-weight: 600;
+    color: #366eff;
+  }
+  &__paragraph {
+    font-weight: 400;
+    font-size: 14px;
+    opacity: 0.5;
+    margin: 25px 33px 65px 33px;
+    text-align: start;
+    line-height: 24px;
+  }
+}

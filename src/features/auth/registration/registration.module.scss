@@ -14,4 +14,14 @@
     font-weight: 600;
     line-height: 32px;
   }
+  &__paragraph {
+    font-weight: bold;
+    font-size: 14px;
+    opacity: 0.5;
+  }
+  &__login {
+    margin-bottom: 40px;
+    font-weight: 600;
+    color: #366eff;
+  }
 }

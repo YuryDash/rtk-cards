@@ -1,4 +1,4 @@
-export const sxBoxCreator = (height: number = 552, width: number = 413) => {
+export const sxBoxCreator = (height: number = 552, width: number = 413, margin: string = "50px auto") => {
   return {
     display: "flex",
     flexWrap: "wrap",
@@ -6,7 +6,7 @@ export const sxBoxCreator = (height: number = 552, width: number = 413) => {
       m: 1,
       width: width,
       height: height,
-      margin: "50px auto",
+      margin: margin,
     },
   };
 };

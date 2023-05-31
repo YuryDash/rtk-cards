@@ -1,0 +1,97 @@
+.back {
+  display: flex;
+  justify-content: start;
+  margin: 25px 0 0 13%;
+  align-items: center;
+  color: black;
+  text-decoration: none;
+
+  &__arrow {
+    height: 14px;
+  }
+  &__text {
+    margin-left: 12px;
+  }
+}
+
+.paper {
+  &__title {
+    margin: 27px 0 30px 0;
+    font-size: 26px;
+    font-weight: 600;
+  }
+
+  &__paragraph {
+    font-weight: 400;
+    font-size: 14px;
+    opacity: 0.5;
+    margin: 13px 0 30px 0;
+    text-align: start;
+    line-height: 24px;
+    text-align: center;
+  }
+}
+.avatar__group {
+  position: relative;
+  margin: 0 auto;
+  width: 98px;
+  height: 98px;
+  overflow: hidden;
+  border-radius: 1px solid white;
+
+  .avatar {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+  }
+  .photo {
+    position: absolute;
+    right: 10px;
+    bottom: 20px;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    &:hover {
+      border: 2123px blue;
+    }
+  }
+}
+.name {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: baseline;
+  &__value {
+    margin-right: 10px;
+    font-weight: 500;
+    font-size: 20px;
+  }
+  &__img {
+    width: 12px;
+    height: 14px;
+    cursor: pointer;
+  }
+}
+.customButton {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  width: 127px;
+  height: 36px;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.447);
+  cursor: pointer;
+  img {
+    margin-right: 5px;
+  }
+  &:hover {
+    background-color: white;
+  }
+  &:active {
+    background-color: antiquewhite;
+  }
+}
