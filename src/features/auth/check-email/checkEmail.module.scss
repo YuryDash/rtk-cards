@@ -1,0 +1,18 @@
+.paper {
+  &__container {
+    height: 408px;
+  }
+  &__title {
+    margin: 35px 0 30px 0;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 32px;
+  }
+
+  &__describe {
+    margin: 30px 43px 50px 43px;
+    font-weight: 400;
+    opacity: 0.5;
+    font-size: 14px;
+  }
+}

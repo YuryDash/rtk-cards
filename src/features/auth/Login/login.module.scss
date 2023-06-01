@@ -52,7 +52,7 @@
     font-weight: 500;
     line-height: 17px;
   }
-  &__navlink {
+  &__navLink {
     align-self: flex-end;
     font-size: 14px;
     font-weight: 500;
@@ -65,7 +65,12 @@
   }
   &__registration {
     margin-bottom: 40px;
-    font-weight: 600px;
+    font-weight: 600;
     color: #366eff;
+  }
+  &__paragraph {
+    font-weight: 600;
+    font-size: 14px;
+    opacity: 0.5;
   }
 }
