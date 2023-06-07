@@ -9,11 +9,26 @@ import { Error404 } from "features/error404/Error404";
 import { Profile } from "features/user-info/Profile";
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
+import { useAppDispatch, useAppSelector } from "app/hooks";
+import { useEffect } from "react";
+import { appActions } from "app/app.slice";
 
 export const App = () => {
+  const isLoading = useAppSelector((state) => {
+    return state.app.isLoading;
+  });
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(appActions.setIsLoading({ isLoading: false }));
+    }, 3000);
+  }, []);
+
   return (
     <div className="App">
       <Header btnText="Sign in" />
+      {isLoading && <h1>Loader...</h1>}
       <Routes>
         <Route path="/" element={<Navigate to={PATH.LOGIN} />} />
         <Route path={PATH.LOGIN} element={<Login />} />
