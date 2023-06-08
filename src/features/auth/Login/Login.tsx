@@ -16,6 +16,8 @@ import * as React from "react";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import s from "./login.module.scss";
+import { useAppDispatch } from "app/hooks";
+import { authThunks } from "../auth.slice";
 
 export const Login: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -26,13 +28,19 @@ export const Login: React.FC = () => {
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
+
+  const dispatch = useAppDispatch();
+
+  const loginHandler = () => {
+    dispatch(authThunks.login({ email: "tyloh@nya.nya", password: "tyloh@nya.nya", rememberMe: false }));
+  };
   return (
     <div>
       <Box sx={sxBoxCreator()}>
         <Paper elevation={3}>
           <div className={s.paper__container}>
             <div className={s.paper__title}>Sign In</div>
-            <form className={s.paper__form}>
+            <div className={s.paper__form}>
               <TextField sx={{ m: 1, width: "347px" }} id="email" label="Email" variant="standard" />
               <FormControl sx={{ m: 1, width: "347px" }} variant="standard">
                 <InputLabel htmlFor="password">Password</InputLabel>
@@ -59,11 +67,11 @@ export const Login: React.FC = () => {
                 Forgot Password
               </NavLink>
               <div className={s.paper__button}>
-                <ButtonComponent type="submit" sx={sxButton("347px")} variant="contained">
+                <ButtonComponent onClick={loginHandler} type="submit" sx={sxButton("347px")} variant="contained">
                   Sign in
                 </ButtonComponent>
               </div>
-            </form>
+            </div>
             <span className={s.paper__paragraph}>Already have an account?</span>
             <Link className={s.paper__registration} to={PATH.REGISTRATION}>
               Sign Up

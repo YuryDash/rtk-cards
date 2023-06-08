@@ -15,6 +15,8 @@ import { ButtonComponent } from "components/button/ButtonComponent";
 import React from "react";
 import { Link } from "react-router-dom";
 import s from "./registration.module.scss";
+import { useAppDispatch } from "app/hooks";
+import { authThunks } from "../auth.slice";
 
 type RegistrationPropsType = {};
 export const Registration: React.FC<RegistrationPropsType> = ({}) => {
@@ -26,15 +28,19 @@ export const Registration: React.FC<RegistrationPropsType> = ({}) => {
     event.preventDefault();
   };
 
+  const dispatch = useAppDispatch();
+
+  const registerHandler = () => {
+    dispatch(authThunks.register({ email: "tyloh@nya.nya", password: "tyloh@nya.nya" }));
+  };
+
   return (
     <div className={s.paper}>
       <Box sx={sxBoxCreator()}>
         <Paper elevation={3}>
           <div className={s.paper__container}>
             <div className={s.paper__title}>Sign Up</div>
-
             <TextField sx={{ m: 0, width: "347px" }} id="standard-basic" label="Email" variant="standard" />
-
             <FormControl sx={{ m: 0, width: "347px" }} variant="standard">
               <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
               <Input
@@ -72,7 +78,7 @@ export const Registration: React.FC<RegistrationPropsType> = ({}) => {
                 }
               />
             </FormControl>
-            <ButtonComponent type="submit" sx={sxButton("347px")} variant="contained">
+            <ButtonComponent onClick={registerHandler} type="submit" sx={sxButton("347px")} variant="contained">
               Sign Up
             </ButtonComponent>
 

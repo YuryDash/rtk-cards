@@ -1,6 +1,6 @@
 import { PATH } from "common/constants/path";
 import { Header } from "components/header/header";
-import { Login } from "features/auth/Login/Login";
+import { Login } from "features/auth/login/Login";
 import { CheckEmail } from "features/auth/check-email/CheckEmail";
 import { NewPass } from "features/auth/new-pass/NewPass";
 import { PassRecovery } from "features/auth/pass-recovery/PassRecovery";
@@ -12,6 +12,7 @@ import "./App.css";
 import { useAppDispatch, useAppSelector } from "app/hooks";
 import { useEffect } from "react";
 import { appActions } from "app/app.slice";
+import { Loader } from "components/loader/Loader";
 
 export const App = () => {
   const isLoading = useAppSelector((state) => {
@@ -22,13 +23,13 @@ export const App = () => {
   useEffect(() => {
     setTimeout(() => {
       dispatch(appActions.setIsLoading({ isLoading: false }));
-    }, 3000);
+    }, 1000);
   }, []);
 
   return (
     <div className="App">
       <Header btnText="Sign in" />
-      {isLoading && <h1>Loader...</h1>}
+      {isLoading && <Loader />}
       <Routes>
         <Route path="/" element={<Navigate to={PATH.LOGIN} />} />
         <Route path={PATH.LOGIN} element={<Login />} />
