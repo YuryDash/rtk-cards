@@ -14,7 +14,7 @@ import Button from "@mui/material/Button/Button";
 import { TextField } from "@mui/material";
 export const Profile = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(true);
   const [name, setName] = useState("Name");
   const handleClickShowPassword = () =>
     setShowPassword((show) => {
