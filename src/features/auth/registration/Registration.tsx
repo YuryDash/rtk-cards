@@ -15,9 +15,13 @@ import { ButtonComponent } from "components/button/ButtonComponent";
 import React from "react";
 import { Link } from "react-router-dom";
 import s from "./registration.module.scss";
+import { useAppDispatch } from "app/hooks";
+import { authThunks } from "auth/auth-slice";
 
 type RegistrationPropsType = {};
 export const Registration: React.FC<RegistrationPropsType> = ({}) => {
+  const dispatch = useAppDispatch();
+
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -25,7 +29,13 @@ export const Registration: React.FC<RegistrationPropsType> = ({}) => {
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
-
+  const onCLickLogInHandler = () => {
+    const payload = {
+      email: "tyloh@nya.nya",
+      password: "tyloh@nya.nya",
+    };
+    dispatch(authThunks.register(payload));
+  };
   return (
     <div className={s.paper}>
       <Box sx={sxBoxCreator()}>
@@ -72,7 +82,7 @@ export const Registration: React.FC<RegistrationPropsType> = ({}) => {
                 }
               />
             </FormControl>
-            <ButtonComponent type="submit" sx={sxButton("347px")} variant="contained">
+            <ButtonComponent type="submit" sx={sxButton("347px")} variant="contained" onClick={onCLickLogInHandler}>
               Sign Up
             </ButtonComponent>
 

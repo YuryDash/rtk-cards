@@ -7,8 +7,24 @@ import { Link } from "react-router-dom";
 import s from "./pass-recovery.module.scss";
 import { PATH } from "common/constants/path";
 import TextField from "@mui/material/TextField/TextField";
+import { useAppDispatch } from "app/hooks";
+import { authThunks } from "auth/auth-slice";
 
 export const PassRecovery = () => {
+  const dispatch = useAppDispatch();
+  const onClickSendInstructions = () => {
+    const payload = {
+      email: "tyloh@nya.nya",
+      message: `<div style="background-color: lime; padding: 15px">
+      password recovery link: 
+      <a href='http://localhost:3000/#/set-new-password/$token$'>
+      link</a>
+      </div>`,
+      from: "ydaszukiewicz@gmail.com",
+    };
+    dispatch(authThunks.forgot(payload));
+  };
+
   return (
     <>
       <Box sx={sxBoxCreator(456)}>
@@ -25,7 +41,12 @@ export const PassRecovery = () => {
               Enter your email address and we will send you further instructions{" "}
             </div>
             <Link to={PATH.LOGIN}>
-              <ButtonComponent type="submit" sx={sxButton("347px")} variant="contained">
+              <ButtonComponent
+                onClick={onClickSendInstructions}
+                type="submit"
+                sx={sxButton("347px")}
+                variant="contained"
+              >
                 Send Instructions
               </ButtonComponent>
             </Link>
