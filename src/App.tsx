@@ -1,7 +1,6 @@
 import { PATH } from "common/constants/path";
 import { Header } from "components/header/header";
 
-import { Login } from "features/auth/Login/Login";
 import { CheckEmail } from "features/auth/check-email/CheckEmail";
 import { NewPass } from "features/auth/new-pass/NewPass";
 import { PassRecovery } from "features/auth/pass-recovery/PassRecovery";
