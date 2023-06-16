@@ -29,22 +29,18 @@ export const Registration: React.FC<RegistrationPropsType> = ({}) => {
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
-  const onCLickLogInHandler = () => {
-    const payload = {
-      email: "tyloh@nya.nya",
-      password: "tyloh@nya.nya",
-    };
-    dispatch(authThunks.register(payload));
+  const registerHandler = () => {
+    dispatch(authThunks.register({ email: "tyloh@nya.nya", password: "tyloh@nya.nya" }));
   };
+
+
   return (
     <div className={s.paper}>
       <Box sx={sxBoxCreator()}>
         <Paper elevation={3}>
           <div className={s.paper__container}>
             <div className={s.paper__title}>Sign Up</div>
-
             <TextField sx={{ m: 0, width: "347px" }} id="standard-basic" label="Email" variant="standard" />
-
             <FormControl sx={{ m: 0, width: "347px" }} variant="standard">
               <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
               <Input
@@ -82,7 +78,8 @@ export const Registration: React.FC<RegistrationPropsType> = ({}) => {
                 }
               />
             </FormControl>
-            <ButtonComponent type="submit" sx={sxButton("347px")} variant="contained" onClick={onCLickLogInHandler}>
+
+            <ButtonComponent onClick={registerHandler} type="submit" sx={sxButton("347px")} variant="contained">
               Sign Up
             </ButtonComponent>
 

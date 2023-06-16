@@ -17,7 +17,8 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import s from "./login.module.scss";
 import { useAppDispatch } from "app/hooks";
-import { authReducer, authThunks } from "auth/auth-slice";
+
+import { authThunks } from "../auth.slice";
 
 export const Login: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -30,14 +31,8 @@ export const Login: React.FC = () => {
     event.preventDefault();
   };
 
-  const onCLickSignInHandle = () => {
-    const payload = {
-      email: "tyloh@nya.nya",
-      password: "tyloh@nya.nya",
-      rememberMe: false,
-    };
-    dispatch(authThunks.login(payload));
-    console.log(payload);
+  const loginHandler = () => {
+    dispatch(authThunks.login({ email: "tyloh@nya.nya", password: "tyloh@nya.nya", rememberMe: false }));
   };
 
   return (
@@ -73,7 +68,8 @@ export const Login: React.FC = () => {
                 Forgot Password
               </NavLink>
               <div className={s.paper__button}>
-                <ButtonComponent onClick={onCLickSignInHandle} type="submit" sx={sxButton("347px")} variant="contained">
+
+                <ButtonComponent onClick={loginHandler} type="submit" sx={sxButton("347px")} variant="contained">
                   Sign in
                 </ButtonComponent>
               </div>
