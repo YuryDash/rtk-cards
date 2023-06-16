@@ -1,13 +1,6 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material";
 import Box from "@mui/material/Box/Box";
 import Checkbox from "@mui/material/Checkbox/Checkbox";
-import FormControl from "@mui/material/FormControl/FormControl";
-import IconButton from "@mui/material/IconButton/IconButton";
-import Input from "@mui/material/Input/Input";
-import InputAdornment from "@mui/material/InputAdornment/InputAdornment";
-import InputLabel from "@mui/material/InputLabel/InputLabel";
 import Paper from "@mui/material/Paper/Paper";
-import TextField from "@mui/material/TextField/TextField";
 import { PATH } from "common/constants/path";
 import { sxBoxCreator } from "common/styles-utils/sxBox";
 import { sxButton } from "common/styles-utils/sxButton";
@@ -18,22 +11,21 @@ import { Link, NavLink } from "react-router-dom";
 import s from "./login.module.scss";
 import { useAppDispatch } from "app/hooks";
 import { authThunks } from "../auth.slice";
+import { InputPassword } from "components/input-password/InputPassword";
+import { Input } from "components/input/Input";
+import { LoginPayloadType } from "../authApi";
 
 export const Login: React.FC = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const handleClickShowPassword = () =>
-    setShowPassword((show) => {
-      return !show;
-    });
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
-
   const dispatch = useAppDispatch();
 
   const loginHandler = () => {
     dispatch(authThunks.login({ email: "tyloh@nya.nya", password: "tyloh@nya.nya", rememberMe: false }));
   };
+  const [loginData, setLoginData] = useState<LoginPayloadType>({ email: "", password: "", rememberMe: false });
+  const onChange = (value: string, name?: string) => {
+    !!name && setLoginData({ ...loginData, [name]: value });
+  };
+  console.log(loginData);
   return (
     <div>
       <Box sx={sxBoxCreator()}>
@@ -41,24 +33,10 @@ export const Login: React.FC = () => {
           <div className={s.paper__container}>
             <div className={s.paper__title}>Sign In</div>
             <div className={s.paper__form}>
-              <TextField sx={{ m: 1, width: "347px" }} id="email" label="Email" variant="standard" />
-              <FormControl sx={{ m: 1, width: "347px" }} variant="standard">
-                <InputLabel htmlFor="password">Password</InputLabel>
-                <Input
-                  type={showPassword ? "text" : "password"}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
+              <Input name={"email"} onChange={onChange} />
+              <div>
+                <InputPassword name={"password"} onChange={onChange} />
+              </div>
               <div className={s.paper__checkbox}>
                 <Checkbox />
                 <span>Remember me</span>
@@ -82,25 +60,3 @@ export const Login: React.FC = () => {
     </div>
   );
 };
-{
-  /* <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-<InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-<OutlinedInput
-  id="outlined-adornment-password"
-  type={showPassword ? "text" : "password"}
-  endAdornment={
-    <InputAdornment position="end">
-      <IconButton
-        aria-label="toggle password visibility"
-        onClick={handleClickShowPassword}
-        onMouseDown={handleMouseDownPassword}
-        edge="end"
-      >
-        {showPassword ? <VisibilityOff /> : <Visibility />}
-      </IconButton>
-    </InputAdornment>
-  }
-  label="Password"
-/>
-</FormControl> */
-}
