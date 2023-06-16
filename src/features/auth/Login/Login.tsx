@@ -1,7 +1,6 @@
 import Box from "@mui/material/Box/Box";
 import Checkbox from "@mui/material/Checkbox/Checkbox";
 import Paper from "@mui/material/Paper/Paper";
-import { useAppDispatch } from "app/hooks";
 import { PATH } from "common/constants/path";
 import { sxBoxCreator } from "common/styles-utils/sxBox";
 import { sxButton } from "common/styles-utils/sxButton";
@@ -10,27 +9,23 @@ import * as React from "react";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import s from "./login.module.scss";
-
+import { useAppDispatch } from "app/hooks";
+import { authThunks } from "../auth.slice";
 import { InputPassword } from "components/input-password/InputPassword";
 import { Input } from "components/input/Input";
-import { authThunks } from "../auth.slice";
+import { LoginPayloadType } from "../authApi";
 
 export const Login: React.FC = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const handleClickShowPassword = () =>
-    setShowPassword((show) => {
-      return !show;
-    });
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
-
   const dispatch = useAppDispatch();
 
   const loginHandler = () => {
     dispatch(authThunks.login({ email: "tyloh@nya.nya", password: "tyloh@nya.nya", rememberMe: false }));
   };
-
+  const [loginData, setLoginData] = useState<LoginPayloadType>({ email: "", password: "", rememberMe: false });
+  const onChange = (value: string, name?: string) => {
+    !!name && setLoginData({ ...loginData, [name]: value });
+  };
+  console.log(loginData);
   return (
     <div>
       <Box sx={sxBoxCreator()}>
