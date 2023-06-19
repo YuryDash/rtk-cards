@@ -1,20 +1,23 @@
 import { instance, instanceBack } from "common/api/common.api";
 export const authApi = {
   register(payload: RegisterPayloadType) {
-    return instance.post<RegisterResponseType>("auth/register", payload);
+    return instanceBack.post<RegisterResponseType>("auth/register", payload);
   },
   login(payload: LoginPayloadType) {
-    return instance.post<UserType>("auth/login", payload);
+    return instanceBack.post<UserType>("auth/login", payload);
   },
   forgotPass(payload: ForgotPassPayloadType) {
     return instanceBack.post<ForgotPassResponseType>("auth/forgot", payload);
   },
+
   createPass(payload: CreatePassPayloadType) {
     return instance.post<any>("auth/set-new-password", payload);
   },
+
   logOut() {
     return instance.delete<{ info: string }>("auth/me");
   },
+
   updateDataProfile(payload: ChangeUserPayloadType) {
     return instance.put("auth/me", payload);
   },
@@ -62,6 +65,7 @@ export type ForgotPassPayloadType = {
 export type ForgotPassResponseType = {
   info: string;
   error: string;
+  in?: string;
 };
 export type RegisterResponseType = {
   addedUser: Omit<UserType, "token" | "tokenDeathTime">;

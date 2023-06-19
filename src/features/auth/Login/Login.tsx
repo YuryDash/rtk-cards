@@ -10,7 +10,7 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import s from "./login.module.scss";
 import { useAppDispatch } from "app/hooks";
-import { authThunks } from "../auth.slice";
+import { authThunks } from "../auth-slice";
 import { InputPassword } from "components/input-password/InputPassword";
 import { Input } from "components/input/Input";
 import { LoginPayloadType } from "../authApi";

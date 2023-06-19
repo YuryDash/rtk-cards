@@ -5,8 +5,8 @@ import { sxButton } from "common/styles-utils/sxButton";
 import { ButtonComponent } from "components/button/ButtonComponent";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAppDispatch } from "app/hooks";
-import { authThunks } from "../auth.slice";
+import { useAppDispatch, useAppSelector } from "app/hooks";
+import { authThunks } from "../auth-slice";
 import { InputPassword } from "components/input-password/InputPassword";
 import { Input } from "components/input/Input";
 import { RegisterPayloadType } from "../authApi";
@@ -18,6 +18,7 @@ type UserDataType = RegisterPayloadType & {
 };
 export const Registration = () => {
   const dispatch = useAppDispatch();
+  const errorValue = useAppSelector((state) => state.auth.errorValue);
   const registerHandler = () => {
     dispatch(authThunks.register({ email: "tyloh@nya.nya", password: "tyloh@nya.nya" }));
   };
