@@ -13,10 +13,15 @@ const register = createAsyncThunk("auth/register", async (payload: RegisterPaylo
     return res;
   });
 });
+
+//TODO:
 const login = createAsyncThunk("auth/login", async (payload: LoginPayloadType, { dispatch }) => {
-  authApi.login(payload).then((res) => {
-    dispatch(authActions.setUser({ user: res.data }));
-  });
+  authApi
+    .login(payload)
+    .then((res) => {
+      dispatch(authActions.setUser({ user: res.data }));
+    })
+    .catch(() => {});
 });
 const forgotPass = createAsyncThunk("auth/forgot", async (payload: ForgotPassPayloadType, { dispatch }) => {
   authApi.forgotPass(payload).then((res) => {

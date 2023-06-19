@@ -10,6 +10,7 @@ export const appSlice = createSlice({
     isLoading: true,
     isAppInitialized: false,
   },
+
   // reducers состоит из подредьюсеров, каждый из которых эквивалентен одному оператору case в switch, как мы делали раньше (обычный redux)
   reducers: {
     setIsLoading: (state, action: PayloadAction<{ isLoading: boolean }>) => {

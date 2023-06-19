@@ -19,7 +19,12 @@ export const Login: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const loginHandler = () => {
-    dispatch(authThunks.login({ email: "tyloh@nya.nya", password: "tyloh@nya.nya", rememberMe: false }));
+    const payload: LoginPayloadType = {
+      email: "tyloh@nya.nya",
+      password: "tyloh@nya.nya",
+      rememberMe: false,
+    };
+    dispatch(authThunks.login(payload));
   };
   const [loginData, setLoginData] = useState<LoginPayloadType>({ email: "", password: "", rememberMe: false });
   const onChange = (value: string, name?: string) => {

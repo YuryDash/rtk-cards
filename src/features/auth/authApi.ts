@@ -3,11 +3,9 @@ export const authApi = {
   register(payload: RegisterPayloadType) {
     return instance.post<RegisterResponseType>("auth/register", payload);
   },
-
   login(payload: LoginPayloadType) {
     return instance.post<UserType>("auth/login", payload);
   },
-
   forgotPass(payload: ForgotPassPayloadType) {
     return instanceBack.post<ForgotPassResponseType>("auth/forgot", payload);
   },
