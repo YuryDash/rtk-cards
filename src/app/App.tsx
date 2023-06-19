@@ -1,6 +1,6 @@
 import { PATH } from "common/constants/path";
 import { Header } from "components/header/header";
-import { Login } from "features/auth/login/Login";
+
 import { CheckEmail } from "features/auth/check-email/CheckEmail";
 import { NewPass } from "features/auth/new-pass/NewPass";
 import { PassRecovery } from "features/auth/pass-recovery/PassRecovery";
@@ -13,12 +13,17 @@ import { useAppDispatch, useAppSelector } from "app/hooks";
 import { useEffect } from "react";
 import { appActions } from "app/app.slice";
 import { Loader } from "components/loader/Loader";
+import { Login } from "features/auth/login/Login";
+import SnackBar from "components/snack-bar/SnackBar";
 
 export const App = () => {
   const isLoading = useAppSelector((state) => {
     return state.app.isLoading;
   });
+
   const dispatch = useAppDispatch();
+  const errorValue = useAppSelector((state) => state.auth.errorValue);
+  const successValue = useAppSelector((state) => state.auth.successValue);
 
   useEffect(() => {
     setTimeout(() => {
@@ -40,6 +45,12 @@ export const App = () => {
         <Route path={PATH.NEW_PASSWORD} element={<NewPass />} />
         <Route path={PATH.PROFILE} element={<Profile />} />
       </Routes>
+
+      {errorValue ? (
+        <SnackBar textValue={errorValue} severityValue="error" openSnack={!!errorValue} />
+      ) : (
+        successValue && <SnackBar textValue={successValue} severityValue="success" openSnack={!!successValue} />
+      )}
     </div>
   );
 };

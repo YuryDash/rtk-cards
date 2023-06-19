@@ -1,14 +1,29 @@
 import Box from "@mui/material/Box/Box";
 import Paper from "@mui/material/Paper/Paper";
+import TextField from "@mui/material/TextField/TextField";
+import { useAppDispatch } from "app/hooks";
+import { PATH } from "common/constants/path";
 import { sxBoxCreator } from "common/styles-utils/sxBox";
 import { sxButton } from "common/styles-utils/sxButton";
 import { ButtonComponent } from "components/button/ButtonComponent";
 import { Link } from "react-router-dom";
+import { authThunks } from "../auth-slice";
 import s from "./pass-recovery.module.scss";
-import { PATH } from "common/constants/path";
-import TextField from "@mui/material/TextField/TextField";
 
 export const PassRecovery = () => {
+  const dispatch = useAppDispatch();
+  const recoveryHandler = () => {
+    dispatch(
+      authThunks.forgotPass({
+        email: "ydaszukiewicz@gmail.com",
+        message: `<div style="background-color: lime; padding: 15px">
+    password recovery link: 
+    <a href='http://localhost:3000/set-new-password/$token$'>
+    link</a>
+    </div>`,
+      })
+    );
+  };
   return (
     <>
       <Box sx={sxBoxCreator(456)}>
@@ -24,8 +39,8 @@ export const PassRecovery = () => {
             <div className={s.paper__paragraph}>
               Enter your email address and we will send you further instructions{" "}
             </div>
-            <Link to={PATH.LOGIN}>
-              <ButtonComponent type="submit" sx={sxButton("347px")} variant="contained">
+            <Link to={PATH.CHECK_EMAIL}>
+              <ButtonComponent onClick={recoveryHandler} type="submit" sx={sxButton("347px")} variant="contained">
                 Send Instructions
               </ButtonComponent>
             </Link>
