@@ -13,7 +13,7 @@ import { useAppDispatch } from "app/hooks";
 import { authThunks } from "../auth.slice";
 import { InputPassword } from "components/input-password/InputPassword";
 import { Input } from "components/input/Input";
-import { LoginPayloadType } from "../authApi";
+import { LoginPayloadType } from "../auth.api";
 
 export const Login: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -32,7 +32,7 @@ export const Login: React.FC = () => {
         <Paper elevation={3}>
           <div className={s.paper__container}>
             <div className={s.paper__title}>Sign In</div>
-            <div className={s.paper__form}>
+            <form className={s.paper__form}>
               <Input name={"email"} onChange={onChange} />
               <div>
                 <InputPassword name={"password"} onChange={onChange} />
@@ -45,11 +45,11 @@ export const Login: React.FC = () => {
                 Forgot Password
               </NavLink>
               <div className={s.paper__button}>
-                <ButtonComponent onClick={loginHandler} type="submit" sx={sxButton("347px")} variant="contained">
+                <ButtonComponent onClick={loginHandler} type="button" sx={sxButton("347px")} variant="contained">
                   Sign in
                 </ButtonComponent>
               </div>
-            </div>
+            </form>
             <span className={s.paper__paragraph}>Already have an account?</span>
             <Link className={s.paper__registration} to={PATH.REGISTRATION}>
               Sign Up

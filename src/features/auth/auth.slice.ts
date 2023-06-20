@@ -6,7 +6,7 @@ import {
   RegisterPayloadType,
   UserType,
   authApi,
-} from "./authApi";
+} from "./auth.api";
 
 const register = createAsyncThunk("auth/register", async (payload: RegisterPayloadType, { dispatch }) => {
   authApi.register(payload).then((res) => {

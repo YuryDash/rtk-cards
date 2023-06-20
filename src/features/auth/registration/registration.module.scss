@@ -8,6 +8,12 @@
     height: 100%;
     margin: 0 auto;
   }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 10px;
+  }
   &__title {
     margin-top: 30px;
     font-size: 26px;

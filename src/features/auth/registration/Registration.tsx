@@ -9,7 +9,7 @@ import { useAppDispatch } from "app/hooks";
 import { authThunks } from "../auth.slice";
 import { InputPassword } from "components/input-password/InputPassword";
 import { Input } from "components/input/Input";
-import { RegisterPayloadType } from "../authApi";
+import { RegisterPayloadType } from "../auth.api";
 import { PATH } from "common/constants/path";
 import s from "./registration.module.scss";
 
@@ -30,7 +30,7 @@ export const Registration = () => {
     <div className={s.paper}>
       <Box sx={sxBoxCreator()}>
         <Paper elevation={3}>
-          <div className={s.paper__container}>
+          <form className={s.paper__container}>
             <div className={s.paper__title}>Sign Up</div>
             <Input name="email" onChange={onChange} />
             <InputPassword name="password" onChange={onChange} />
@@ -42,7 +42,7 @@ export const Registration = () => {
             <Link className={s.paper__login} to={PATH.LOGIN}>
               Sign in
             </Link>
-          </div>
+          </form>
         </Paper>
       </Box>
       <button>
