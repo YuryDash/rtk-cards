@@ -4,6 +4,7 @@ import {
   ForgotPassResponseType,
   LoginPayloadType,
   RegisterPayloadType,
+  UpdateUserPayloadType,
   UserType,
   authApi,
 } from "./authApi";
@@ -12,7 +13,7 @@ import { errorUtils } from "features/error404/error-utils";
 const register = createAsyncThunk("auth/register", async (payload: RegisterPayloadType, { dispatch }) => {
   try {
     let resRegister = await authApi.register(payload);
-    dispatch(authActions.setUser);
+    dispatch(authActions.setUser({ user: resRegister.data.addedUser }));
   } catch (e) {
     errorUtils(e, dispatch);
   }
@@ -30,12 +31,19 @@ const login = createAsyncThunk("auth/login", async (payload: LoginPayloadType, {
 
 const forgotPass = createAsyncThunk("auth/forgot", async (payload: ForgotPassPayloadType, { dispatch }) => {
   try {
-    const res = await authApi.forgotPass(payload).then((res) => {
-      dispatch(authActions.forgot({ forgot: res.data }));
-    });
+    const res = await authApi.forgotPass(payload);
+    dispatch(authActions.forgot({ forgot: res.data }));
   } catch (e) {
     errorUtils(e, dispatch);
   }
+});
+
+const updateUser = createAsyncThunk("auth/updateUser", async (payload: UpdateUserPayloadType, { dispatch }) => {
+  try {
+    const res = await authApi.updateDataProfile(payload);
+    dispatch(authActions.setImage);
+    dispatch(authActions.setSuccess({ successValue: "Success, you are added Avatar" }));
+  } catch {}
 });
 
 //===============Пример .then()==================
@@ -59,6 +67,7 @@ const authSlice = createSlice({
     responseForgot: null as ForgotPassResponseType | null,
     errorValue: null as string | null,
     successValue: null as string | null,
+    testValueImg: null as string | null,
   },
   reducers: {
     setUser: (state, action: PayloadAction<{ user: UserType }>) => {
@@ -72,6 +81,9 @@ const authSlice = createSlice({
     },
     setSuccess: (state, action: PayloadAction<{ successValue: string }>) => {
       state.successValue = action.payload.successValue;
+    },
+    setImage: (state, action: PayloadAction<{ testImage: string }>) => {
+      state.testValueImg = action.payload.testImage;
     },
   },
 });

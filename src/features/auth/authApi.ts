@@ -3,9 +3,11 @@ export const authApi = {
   register(payload: RegisterPayloadType) {
     return instanceBack.post<RegisterResponseType>("auth/register", payload);
   },
+
   login(payload: LoginPayloadType) {
     return instanceBack.post<UserType>("auth/login", payload);
   },
+
   forgotPass(payload: ForgotPassPayloadType) {
     return instanceBack.post<ForgotPassResponseType>("auth/forgot", payload);
   },
@@ -18,13 +20,13 @@ export const authApi = {
     return instance.delete<{ info: string }>("auth/me");
   },
 
-  updateDataProfile(payload: ChangeUserPayloadType) {
+  updateDataProfile(payload: UpdateUserPayloadType) {
     return instance.put("auth/me", payload);
   },
 };
 
-export type ChangeUserPayloadType = {
-  name: string;
+export type UpdateUserPayloadType = {
+  name?: string;
   avatar?: string;
 };
 export type ChangeUserResponseType = {
