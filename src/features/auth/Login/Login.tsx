@@ -9,17 +9,23 @@ import * as React from "react";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import s from "./login.module.scss";
-import { useAppDispatch } from "app/hooks";
-import { authThunks } from "../auth.slice";
+import { useAppDispatch, useAppSelector } from "app/hooks";
+import { authThunks } from "../auth-slice";
 import { InputPassword } from "components/input-password/InputPassword";
 import { Input } from "components/input/Input";
 import { LoginPayloadType } from "../auth.api";
 
 export const Login: React.FC = () => {
   const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.auth.user?._id);
 
   const loginHandler = () => {
-    dispatch(authThunks.login({ email: "tyloh@nya.nya", password: "tyloh@nya.nya", rememberMe: false }));
+    const payload: LoginPayloadType = {
+      email: "tyloh@nya.nya",
+      password: "tyloh@nya.nya",
+      rememberMe: false,
+    };
+    dispatch(authThunks.login(payload));
   };
   const [loginData, setLoginData] = useState<LoginPayloadType>({ email: "", password: "", rememberMe: false });
   const onChange = (value: string, name?: string) => {
@@ -41,13 +47,15 @@ export const Login: React.FC = () => {
                 <Checkbox />
                 <span>Remember me</span>
               </div>
-              <NavLink className={s.paper__navLink} to={PATH.PASSWORD_RECOVERY}>
+              <Link className={s.paper__navLink} to={PATH.PASSWORD_RECOVERY}>
                 Forgot Password
-              </NavLink>
+              </Link>
               <div className={s.paper__button}>
-                <ButtonComponent onClick={loginHandler} type="button" sx={sxButton("347px")} variant="contained">
-                  Sign in
-                </ButtonComponent>
+                <Link to={user ? PATH.PROFILE : PATH.LOGIN}>
+                  <ButtonComponent onClick={loginHandler} type="submit" sx={sxButton("347px")} variant="contained">
+                    Sign in
+                  </ButtonComponent>
+                </Link>
               </div>
             </form>
             <span className={s.paper__paragraph}>Already have an account?</span>
