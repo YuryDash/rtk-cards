@@ -2,6 +2,7 @@ import { Action, ThunkAction, configureStore } from "@reduxjs/toolkit";
 
 import { appReducer } from "./app.slice";
 import { authReducer } from "features/auth/auth-slice";
+import { createTrue } from "typescript";
 
 export const store = configureStore({
   reducer: {

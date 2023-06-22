@@ -13,22 +13,28 @@ import s from "./profile.module.scss";
 import Button from "@mui/material/Button/Button";
 import { TextField } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "app/hooks";
-import { authActions } from "features/auth/auth-slice";
+import { authActions, authThunks } from "features/auth/auth-slice";
+
 export const Profile = () => {
+  const dispatch = useAppDispatch();
+  const userAvatar = useAppSelector((state) => state.auth.updatedUserData?.updatedUser.avatar);
+  const userName = useAppSelector((state) => state.auth.updatedUserData?.updatedUser.name);
   const [showPassword, setShowPassword] = useState(false);
   const [toggle, setToggle] = useState(true);
-  const [name, setName] = useState("Name");
-  const dispatch = useAppDispatch();
-  const testImages = useAppSelector((state) => state.auth.testValueImg);
+
+  dispatch(authThunks.verifiedUser());
 
   const onClickRenameHandler = () => {
     setToggle(!toggle);
   };
-
+  let nameTest: string;
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setName(e.currentTarget.value);
+    nameTest = e.currentTarget.value;
   };
 
+  const onSaveClick = () => {
+    dispatch(authThunks.updateUser({ name: nameTest }));
+  };
   return (
     <>
       <Link className={s.back} to={PATH.LOGIN}>
@@ -41,7 +47,7 @@ export const Profile = () => {
             <div className={s.paper__title}>Personal Information</div>
 
             <div className={s.avatar__group}>
-              <img className={s.avatar__avatar} src={testImages ? testImages : avatar} alt="avatar" />
+              <img className={s.avatar__avatar} src={userAvatar ? userAvatar : avatar} alt="avatar" />
 
               <input
                 type="file"
@@ -52,7 +58,7 @@ export const Profile = () => {
                   reader.onload = (e) => {
                     const imageDataUrl = e.target?.result;
                     if (typeof imageDataUrl === "string") {
-                      dispatch(authActions.setImage({ testImage: imageDataUrl }));
+                      dispatch(authThunks.updateUser({ avatar: imageDataUrl }));
                     }
                   };
                   reader.readAsDataURL(e.currentTarget.files[0]);
@@ -64,7 +70,7 @@ export const Profile = () => {
             </div>
 
             <div className={s.name}>
-              {toggle && <div className={s.name__value}>{name}</div>}
+              {toggle && <div className={s.name__value}>{userName}</div>}
 
               {toggle ? (
                 <button onClick={onClickRenameHandler}>
@@ -74,14 +80,19 @@ export const Profile = () => {
                 <div className={s.name__toggle}>
                   <TextField
                     sx={{ width: "347px" }}
-                    value={name}
+                    value={userName}
                     onChange={onChangeHandler}
                     autoFocus
                     onBlur={onClickRenameHandler}
                     type="text"
                     variant="standard"
                   ></TextField>
-                  <Button type="submit" variant="contained" sx={{ height: "24px", width: "32px", right: "75px" }}>
+                  <Button
+                    onClick={onSaveClick}
+                    type="submit"
+                    variant="contained"
+                    sx={{ height: "24px", width: "32px", right: "75px" }}
+                  >
                     save
                   </Button>
                 </div>

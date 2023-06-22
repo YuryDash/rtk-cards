@@ -7,7 +7,7 @@ import { sxButton } from "common/styles-utils/sxButton";
 import { ButtonComponent } from "components/button/ButtonComponent";
 import * as React from "react";
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import s from "./login.module.scss";
 import { useAppDispatch, useAppSelector } from "app/hooks";
 import { authThunks } from "../auth-slice";
@@ -18,14 +18,15 @@ import { LoginPayloadType } from "../authApi";
 export const Login: React.FC = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user?._id);
-
-  const loginHandler = () => {
+  const navigate = useNavigate();
+  const loginHandler = async () => {
     const payload: LoginPayloadType = {
       email: "tyloh@nya.nya",
       password: "tyloh@nya.nya",
       rememberMe: false,
     };
-    dispatch(authThunks.login(payload));
+    await dispatch(authThunks.login(payload));
+    navigate(PATH.PROFILE);
   };
   const [loginData, setLoginData] = useState<LoginPayloadType>({ email: "", password: "", rememberMe: false });
   const onChange = (value: string, name?: string) => {

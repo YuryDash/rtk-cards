@@ -15,6 +15,8 @@ import { appActions } from "app/app.slice";
 import { Loader } from "components/loader/Loader";
 import { Login } from "features/auth/login/Login";
 import SnackBar from "components/snack-bar/SnackBar";
+import { authApi } from "features/auth/authApi";
+import { authThunks } from "features/auth/auth-slice";
 
 export const App = () => {
   const isLoading = useAppSelector((state) => {

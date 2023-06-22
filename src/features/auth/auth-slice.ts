@@ -4,11 +4,14 @@ import {
   ForgotPassResponseType,
   LoginPayloadType,
   RegisterPayloadType,
+  RegisterResponseType,
   UpdateUserPayloadType,
+  ResponseUpdateUser,
   UserType,
   authApi,
 } from "./authApi";
 import { errorUtils } from "features/error404/error-utils";
+import { store } from "app/store";
 
 const register = createAsyncThunk("auth/register", async (payload: RegisterPayloadType, { dispatch }) => {
   try {
@@ -28,7 +31,6 @@ const login = createAsyncThunk("auth/login", async (payload: LoginPayloadType, {
     errorUtils(e, dispatch);
   }
 });
-
 const forgotPass = createAsyncThunk("auth/forgot", async (payload: ForgotPassPayloadType, { dispatch }) => {
   try {
     const res = await authApi.forgotPass(payload);
@@ -41,9 +43,22 @@ const forgotPass = createAsyncThunk("auth/forgot", async (payload: ForgotPassPay
 const updateUser = createAsyncThunk("auth/updateUser", async (payload: UpdateUserPayloadType, { dispatch }) => {
   try {
     const res = await authApi.updateDataProfile(payload);
-    dispatch(authActions.setImage);
-    dispatch(authActions.setSuccess({ successValue: "Success, you are added Avatar" }));
-  } catch {}
+    console.log(res.data);
+
+    dispatch(authActions.setUpdateUser({ updatedUser: res.data }));
+    store.getState().auth.updatedUserData?.updatedUser.avatar &&
+      dispatch(authActions.setSuccess({ successValue: "Success, you are added Avatar" }));
+  } catch (e) {
+    errorUtils(e, dispatch);
+  }
+});
+
+const verifiedUser = createAsyncThunk("auth/verifiedUser", async (_, { dispatch }) => {
+  try {
+    const res = await authApi.checkMe();
+  } catch (e) {
+    errorUtils(e, dispatch);
+  }
 });
 
 //===============Пример .then()==================
@@ -67,7 +82,8 @@ const authSlice = createSlice({
     responseForgot: null as ForgotPassResponseType | null,
     errorValue: null as string | null,
     successValue: null as string | null,
-    testValueImg: null as string | null,
+    profile: null as UserType | null,
+    updatedUserData: null as ResponseUpdateUser | null,
   },
   reducers: {
     setUser: (state, action: PayloadAction<{ user: UserType }>) => {
@@ -82,12 +98,12 @@ const authSlice = createSlice({
     setSuccess: (state, action: PayloadAction<{ successValue: string }>) => {
       state.successValue = action.payload.successValue;
     },
-    setImage: (state, action: PayloadAction<{ testImage: string }>) => {
-      state.testValueImg = action.payload.testImage;
+    setUpdateUser: (state, action: PayloadAction<{ updatedUser: ResponseUpdateUser }>) => {
+      state.updatedUserData = action.payload.updatedUser;
     },
   },
 });
 
 export const authReducer = authSlice.reducer;
 export const authActions = authSlice.actions;
-export const authThunks = { register, login, forgotPass };
+export const authThunks = { register, login, forgotPass, updateUser, verifiedUser };

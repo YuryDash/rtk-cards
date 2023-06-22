@@ -17,11 +17,15 @@ export const authApi = {
   },
 
   logOut() {
-    return instance.delete<{ info: string }>("auth/me");
+    return instanceBack.delete<{ info: string }>("auth/me");
   },
 
   updateDataProfile(payload: UpdateUserPayloadType) {
-    return instance.put("auth/me", payload);
+    return instanceBack.put<ResponseUpdateUser>("auth/me", payload);
+  },
+
+  checkMe() {
+    return instanceBack.post("auth/me");
   },
 };
 
@@ -29,6 +33,7 @@ export type UpdateUserPayloadType = {
   name?: string;
   avatar?: string;
 };
+
 export type ChangeUserResponseType = {
   token: string;
   tokenDeathTime: number;
@@ -46,6 +51,7 @@ export type LoginPayloadType = {
   password: string;
   rememberMe: boolean;
 };
+
 export type UserType = {
   _id: string;
   email: string;
@@ -59,20 +65,30 @@ export type UserType = {
   rememberMe: boolean;
   error?: string;
 };
+
 export type ForgotPassPayloadType = {
   email: string;
   from?: string;
   message: string;
 };
+
 export type ForgotPassResponseType = {
   info: string;
   error: string;
   in?: string;
 };
+
 export type RegisterResponseType = {
   addedUser: Omit<UserType, "token" | "tokenDeathTime">;
 };
+
 export type CreatePassPayloadType = {
   password: string;
   resetPasswordToken?: string;
+};
+
+export type ResponseUpdateUser = {
+  token: string;
+  tokenDeathTime: number;
+  updatedUser: Omit<UserType, "token" | "tokenDeathTime">;
 };
