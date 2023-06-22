@@ -7,7 +7,7 @@ import {
   UpdateUserPayloadType,
   UserType,
   authApi,
-} from "./authApi";
+} from "./auth.api";
 import { errorUtils } from "features/error404/error-utils";
 
 const register = createAsyncThunk("auth/register", async (payload: RegisterPayloadType, { dispatch }) => {
